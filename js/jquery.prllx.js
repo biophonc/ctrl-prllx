@@ -1,6 +1,7 @@
 /**
- * User: biophonc
- * Date: 22.11.12
+ * License: MIT
+ * Author: biophonc
+ * Date: 23.11.2012
  */
 ;(function ( $, window, document, undefined ) {
 
