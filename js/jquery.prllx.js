@@ -57,11 +57,11 @@
 		/**
 		 *
 		 */
-		scroll: function(arg) {
+		scroll: function() {
 
 			var windowScrollTop 		= $(window).scrollTop();
 			var windowScrollBottom 		= windowScrollTop + $(window).height();
-			var windowScrollBottomCb	= windowScrollBottom - this.options.callbackThreshold
+			var windowScrollBottomCb	= windowScrollBottom - this.options.callbackThreshold;
 			var elementTop 				= this.element.offset().top;
 			var elementBottom 			= elementTop + this.element.height();
 			var elementBottomCb			= elementBottom - this.options.callbackThreshold;
