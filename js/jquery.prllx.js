@@ -28,7 +28,6 @@
 				this.options.factor = this.element.attr("data-factor");
 			}
 
-
 			if(typeof this.element.attr("data-callback") !== "undefined") {
 				this.options.callback = this.element.attr("data-callback");
 			}
@@ -36,7 +35,6 @@
 			if(typeof this.element.attr("data-callback-threshold") !== "undefined") {
 				this.options.callbackThreshold = this.element.attr("data-callback-threshold");
 			}
-
 
 			if(!this.options.object) {
 
@@ -51,7 +49,7 @@
 				this.element.data("backgroundPositionX", bgPos);
 
 			}
-
+			this.scroll();
 			$(window).on('scroll', $.proxy(this.scroll, this));
 		},
 
@@ -59,7 +57,7 @@
 		/**
 		 *
 		 */
-		scroll: function() {
+		scroll: function(arg) {
 
 			var windowScrollTop 		= $(window).scrollTop();
 			var windowScrollBottom 		= windowScrollTop + $(window).height();
