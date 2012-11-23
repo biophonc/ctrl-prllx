@@ -12,7 +12,8 @@
 		options: {
 			factor: 0.3,
 			object: false,
-			callback: false
+			callback: false,
+			callbackThreshold: 0
 		},
 
 		/**
@@ -26,11 +27,15 @@
 				this.options.factor = this.element.attr("data-factor");
 			}
 
-			/*
+
 			if(typeof this.element.attr("data-callback") !== "undefined") {
 				this.options.callback = this.element.attr("data-callback");
 			}
-			*/
+
+			if(typeof this.element.attr("data-callback-threshold") !== "undefined") {
+				this.options.callbackThreshold = this.element.attr("data-callback-threshold");
+			}
+
 
 			if(!this.options.object) {
 
@@ -49,19 +54,21 @@
 			$(window).on('scroll', $.proxy(this.scroll, this));
 		},
 
+
 		/**
 		 *
 		 */
 		scroll: function() {
 
-			var windowScrollTop 	= $(window).scrollTop();
-			var windowScrollBottom 	= windowScrollTop + $(window).height();
-			var elementTop 			= this.element.offset().top;
-			var elementBottom 		= elementTop + this.element.height();
+			var windowScrollTop 		= $(window).scrollTop();
+			var windowScrollBottom 		= windowScrollTop + $(window).height();
+			var windowScrollBottomCb	= windowScrollBottom - this.options.callbackThreshold
+			var elementTop 				= this.element.offset().top;
+			var elementBottom 			= elementTop + this.element.height();
+			var elementBottomCb			= elementBottom - this.options.callbackThreshold;
 
-
+			// check if slide is in view
 			if((windowScrollBottom > elementTop) && (windowScrollTop < elementBottom)) {
-				this.element.data("inview", true);
 
 				// calculate position
 				var cssScrollTop = Math.round(elementTop - windowScrollTop) * this.options.factor;
@@ -72,20 +79,25 @@
 					this.element.css("backgroundPosition", this.element.data("backgroundPositionX") + " " + cssScrollTop + "px");
 				}
 
-			} else {
-				// this.element.data("inview", false);
-				// this.element.data("callbackDone", false);
 			}
 
+			// use threshold for in view test for callback
+			if((windowScrollBottomCb > elementTop) && (windowScrollTop < elementBottomCb)) {
+				this.element.data("inview", true);
+			} else {
+				this.element.data("inview", false);
+				this.element.data("callbackDone", false);
+			}
+
+
 			// pass callback function via data-callback attribute
-			/*
 			if(this.element.data("inview") && !this.element.data("callbackDone")) {
 				if(this.options.callback) {
-					window[this.options.callback]();
+					window[this.options.callback](this);
 					this.element.data("callbackDone", true);
 				}
 			}
-			*/
+
 		},
 
 		/**

@@ -10,7 +10,7 @@
 
 	<section class="ctrl-prllx">
 
-		<article class="slide-1">
+		<article class="slide-1" data-callback="userFunc" data-callback-threshold="400">
 			<div class="ctrl-prllx-wp-content">
 				<div class="ctrl-prllx-object"></div>
 				<h1>I am supposed to be a headline</h1>
@@ -20,10 +20,10 @@
 			</div>
 		</article>
 
-		<article class="slide-2">
+		<article class="slide-2" data-callback="userFunc" data-callback-threshold="400">
 			<div class="ctrl-prllx-wp-content">
 				<div class="ctrl-prllx-object" data-factor="0.5"><span style="font-size: 120px">OBJECT I</span></div>
-				<div class="ctrl-prllx-object" data-factor="0.3" style="padding-left:300PX"><span style="font-size: 120px">ONE MORE</span></div>
+				<div class="ctrl-prllx-object" data-factor="0.3" style="padding-left:300px; padding-top: 100px"><span style="font-size: 120px">ONE MORE</span></div>
 				<h1>I am supposed to be a headline</h1>
 				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
 					labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
@@ -31,7 +31,7 @@
 			</div>
 		</article>
 
-		<article class="slide-3">
+		<article class="slide-3" data-callback="userFunc" data-callback-threshold="400">
 			<div class="ctrl-prllx-wp-content">
 				<div class="ctrl-prllx-object" data-factor="0.7"><span style="font-size: 120px">OBJECT II</span></div>
 				<h1>I am supposed to be a headline</h1>
@@ -42,6 +42,7 @@
 		</article>
 	</section>
 
+	<div class="callback-info"></div>
 
 
 
@@ -49,6 +50,14 @@
 	<script src="js/jquery-ui-1.9.1.custom.js"></script>
 	<script src="js/jquery.prllx.js"></script>
 	<script>
+
+		// callback.
+		var userFunc = function(arg) {
+
+			$(".callback-info").html("Display Element-Index: " + arg.element.index());
+
+		}
+
 		$(document).ready(function(){
 
 			// slides
