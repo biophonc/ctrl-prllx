@@ -1,0 +1,39 @@
+#
+# Meta Data
+#
+.DS_Store
+.DS_Store?
+
+#
+# Thumbnails
+#
+._*
+
+#
+# Files that might appear on external disk
+#
+.Spotlight-V100
+.Trashes
+
+#
+# VIM
+#
+.*.sw[a-z]
+*.un~
+Session.vim
+
+#
+# SASS/Compass
+#
+.sass-cache
+compass_app_log.txt
+
+#
+# project files/folders
+#
+*.komodo*
+*.idea*
+*.project*
+
+
+
